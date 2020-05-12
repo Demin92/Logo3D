@@ -17,13 +17,23 @@ class LogoRenderer : GLSurfaceView.Renderer {
     private val rotateMatrixX = FloatArray(16)//rotate  matrix
     private val rotateMatrixY = FloatArray(16)//rotate  matrix
     private val rotateMatrixZ = FloatArray(16)//rotate  matrix
-    private lateinit var charP: CharP
     private lateinit var charI: CharI
+    private lateinit var charM: CharM
+    private lateinit var charP: CharP
+    private lateinit var charE: CharE
+    private lateinit var charR: CharR
+    private lateinit var charA: CharA
+    private lateinit var charL: CharL
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
         GLES32.glClearColor(0f, 0f, 0f, 1f)
-        charP = CharP()
         charI = CharI()
+        charM = CharM()
+        charP = CharP()
+        charE = CharE()
+        charR = CharR()
+        charA = CharA()
+        charL = CharL()
     }
 
     override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
@@ -36,11 +46,28 @@ class LogoRenderer : GLSurfaceView.Renderer {
     override fun onDrawFrame(gl: GL10?) {
         drawBackground()
         setupMatrix()
+        translate(-2.7f)
         charI.draw(mVPMatrix)
-//        Matrix.translateM(modelMatrix, 0, 2f, 0f, 0f)
-//        Matrix.multiplyMM(mVMatrix, 0, viewMatrix, 0, modelMatrix, 0)
-//        Matrix.multiplyMM(mVPMatrix, 0, projectionMatrix, 0, mVMatrix, 0)
-//        charP.draw(mVPMatrix)
+        translate(0.8f)
+        charM.draw(mVPMatrix)
+        translate(0.9f)
+        charP.draw(mVPMatrix)
+        translate(0.7f)
+        charE.draw(mVPMatrix)
+        translate(0.8f)
+        charR.draw(mVPMatrix)
+        translate(0.7f)
+        charI.draw(mVPMatrix)
+        translate(0.7f)
+        charA.draw(mVPMatrix)
+        translate(0.8f)
+        charL.draw(mVPMatrix)
+    }
+
+    private fun translate(distance: Float) {
+        Matrix.translateM(modelMatrix, 0, distance, 0f, 0f)
+        Matrix.multiplyMM(mVMatrix, 0, viewMatrix, 0, modelMatrix, 0)
+        Matrix.multiplyMM(mVPMatrix, 0, projectionMatrix, 0, mVMatrix, 0)
     }
 
     private fun setupMatrix() {

@@ -15,8 +15,7 @@ class LogoView(
         setEGLContextClientVersion(2)
         setRenderer(renderer)
         renderMode = RENDERMODE_WHEN_DIRTY
-//        runRotation()
-        setupTouchControl()
+        runRotation()
     }
 
     private fun runRotation() {

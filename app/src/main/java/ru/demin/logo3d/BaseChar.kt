@@ -8,7 +8,7 @@ import java.nio.ByteOrder
 import java.nio.IntBuffer
 import kotlin.math.pow
 
-abstract class BaseChar(private val koef: Float = 0.5f) {
+abstract class BaseChar(private val koef: Float = 0.1f) {
     private val vertexShaderCode = "attribute vec3 aVertexPosition;" +
             "attribute vec4 aVertexColor;" +
             "uniform mat4 uMVPMatrix;" +
@@ -157,15 +157,11 @@ abstract class BaseChar(private val koef: Float = 0.5f) {
 
     private fun createVertexColor(vertexSize: Int): FloatArray {
         val vertex = mutableListOf<Float>()
-//        for (i in 0 until vertexSize) {
-//            vertex.addAll(listOf(1f, 1f, 1f, 1f))
-//        }
-
         for (i in 0 until vertexSize/2) {
-            vertex.addAll(listOf(0f, 0f, 1f, 1f))
+            vertex.addAll(listOf(1f, 1f, 1f, 1f))
         }
         for (i in 0 until vertexSize/2) {
-            vertex.addAll(listOf(0f, 1f, 1f, 1f))
+            vertex.addAll(listOf(0.5f, 0.5f, 0.5f, 1f))
         }
         return vertex.toFloatArray()
     }

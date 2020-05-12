@@ -1,6 +1,6 @@
 package ru.demin.logo3d
 
-class CharP : BaseChar() {
+class CharR : BaseChar() {
     override fun createVertex(z: Float): List<Float> {
         val vertex = mutableListOf<Float>()
 
@@ -28,7 +28,9 @@ class CharP : BaseChar() {
                     -2f, -4f, z,
                     -2f, 4f, z,
                     0f, 3f, z,
-                    0f, 1f, z
+                    0f, 1f, z,
+                    2f, -4f, z,
+                    4f, -4f, z
                 )
             )
             addAll(outerCurve)
@@ -52,7 +54,9 @@ class CharP : BaseChar() {
                 0, 5, count + MAIN_VERTEX_COUNT,
                 3, 4, 0,
                 3, 0, 1,
-                3, 2, 1
+                3, 2, 1,
+                0, MAIN_VERTEX_COUNT, 7,
+                0, 6, 7
             )
         )
         return index.map { it + offset }
@@ -71,15 +75,17 @@ class CharP : BaseChar() {
             addAll(addSurface(5, MAIN_VERTEX_COUNT + BEZIER_CURVE_STEPS_COUNT + 1))
             addAll(addSurface(4, MAIN_VERTEX_COUNT + 2 * BEZIER_CURVE_STEPS_COUNT + 1))
             addAll(addSurface(4, 5))
-            addAll(addSurface(0, MAIN_VERTEX_COUNT))
+            addAll(addSurface(7, MAIN_VERTEX_COUNT))
             addAll(addSurface(3, MAIN_VERTEX_COUNT + BEZIER_CURVE_STEPS_COUNT))
             addAll(addSurface(0, 1))
             addAll(addSurface(1, 2))
             addAll(addSurface(2, 3))
+            addAll(addSurface(0, 6))
+            addAll(addSurface(6, 7))
         }
     }
 
     private companion object {
-        private const val MAIN_VERTEX_COUNT = 6
+        private const val MAIN_VERTEX_COUNT = 8
     }
 }
