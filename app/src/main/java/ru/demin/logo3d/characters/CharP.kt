@@ -1,4 +1,4 @@
-package ru.demin.logo3d
+package ru.demin.logo3d.characters
 
 class CharP : BaseChar() {
     override fun createVertex(z: Float): List<Float> {
@@ -46,7 +46,8 @@ class CharP : BaseChar() {
 
         index.addAll(
             listOf(
-                0, MAIN_VERTEX_COUNT, count + MAIN_VERTEX_COUNT,
+                0,
+                MAIN_VERTEX_COUNT, count + MAIN_VERTEX_COUNT,
                 3, MAIN_VERTEX_COUNT + BEZIER_CURVE_STEPS_COUNT, MAIN_VERTEX_COUNT + count + BEZIER_CURVE_STEPS_COUNT,
                 3, 4, MAIN_VERTEX_COUNT + count + BEZIER_CURVE_STEPS_COUNT,
                 0, 5, count + MAIN_VERTEX_COUNT,

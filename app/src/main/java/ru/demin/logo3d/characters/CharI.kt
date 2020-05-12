@@ -1,4 +1,4 @@
-package ru.demin.logo3d
+package ru.demin.logo3d.characters
 
 class CharI : BaseChar() {
     override fun createVertex(z: Float): List<Float> {

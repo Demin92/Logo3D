@@ -3,6 +3,13 @@ package ru.demin.logo3d
 import android.opengl.GLES32
 import android.opengl.GLSurfaceView
 import android.opengl.Matrix
+import ru.demin.logo3d.characters.CharA
+import ru.demin.logo3d.characters.CharE
+import ru.demin.logo3d.characters.CharI
+import ru.demin.logo3d.characters.CharL
+import ru.demin.logo3d.characters.CharM
+import ru.demin.logo3d.characters.CharP
+import ru.demin.logo3d.characters.CharR
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
@@ -17,23 +24,17 @@ class LogoRenderer : GLSurfaceView.Renderer {
     private val rotateMatrixX = FloatArray(16)//rotate  matrix
     private val rotateMatrixY = FloatArray(16)//rotate  matrix
     private val rotateMatrixZ = FloatArray(16)//rotate  matrix
-    private lateinit var charI: CharI
-    private lateinit var charM: CharM
-    private lateinit var charP: CharP
-    private lateinit var charE: CharE
     private lateinit var charR: CharR
-    private lateinit var charA: CharA
-    private lateinit var charL: CharL
+    private lateinit var charM: CharM
+    private lateinit var sphere1: Sphere
+    private lateinit var sphere2: Sphere
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
         GLES32.glClearColor(0f, 0f, 0f, 1f)
-        charI = CharI()
-        charM = CharM()
-        charP = CharP()
-        charE = CharE()
-        charR = CharR()
-        charA = CharA()
-        charL = CharL()
+        charR = CharR(KOEF / 2)
+        charM = CharM(KOEF / 2)
+        sphere1 = Sphere(KOEF, 0f)
+        sphere2 = Sphere(KOEF, 1f)
     }
 
     override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
@@ -46,22 +47,14 @@ class LogoRenderer : GLSurfaceView.Renderer {
     override fun onDrawFrame(gl: GL10?) {
         drawBackground()
         setupMatrix()
-        translate(-2.7f)
-        charI.draw(mVPMatrix)
-        translate(0.8f)
-        charM.draw(mVPMatrix)
-        translate(0.9f)
-        charP.draw(mVPMatrix)
-        translate(0.7f)
-        charE.draw(mVPMatrix)
-        translate(0.8f)
+        translate(-2f)
         charR.draw(mVPMatrix)
-        translate(0.7f)
-        charI.draw(mVPMatrix)
-        translate(0.7f)
-        charA.draw(mVPMatrix)
-        translate(0.8f)
-        charL.draw(mVPMatrix)
+        translate(1.3f)
+        sphere1.draw(mVPMatrix)
+        translate(1.3f)
+        sphere2.draw(mVPMatrix)
+        translate(1.4f)
+        charM.draw(mVPMatrix)
     }
 
     private fun translate(distance: Float) {
@@ -127,5 +120,9 @@ class LogoRenderer : GLSurfaceView.Renderer {
             private const val RANDOM_DISTANCE = 5f
             private const val CHANGE_AXIS_PROBABILITY = 50
         }
+    }
+
+    companion object {
+        private const val KOEF = 0.3f
     }
 }

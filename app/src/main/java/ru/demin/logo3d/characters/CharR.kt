@@ -1,6 +1,6 @@
-package ru.demin.logo3d
+package ru.demin.logo3d.characters
 
-class CharR : BaseChar() {
+class CharR(koef: Float) : BaseChar(koef) {
     override fun createVertex(z: Float): List<Float> {
         val vertex = mutableListOf<Float>()
 
@@ -48,14 +48,16 @@ class CharR : BaseChar() {
 
         index.addAll(
             listOf(
-                0, MAIN_VERTEX_COUNT, count + MAIN_VERTEX_COUNT,
+                0,
+                MAIN_VERTEX_COUNT, count + MAIN_VERTEX_COUNT,
                 3, MAIN_VERTEX_COUNT + BEZIER_CURVE_STEPS_COUNT, MAIN_VERTEX_COUNT + count + BEZIER_CURVE_STEPS_COUNT,
                 3, 4, MAIN_VERTEX_COUNT + count + BEZIER_CURVE_STEPS_COUNT,
                 0, 5, count + MAIN_VERTEX_COUNT,
                 3, 4, 0,
                 3, 0, 1,
                 3, 2, 1,
-                0, MAIN_VERTEX_COUNT, 7,
+                0,
+                MAIN_VERTEX_COUNT, 7,
                 0, 6, 7
             )
         )
@@ -83,6 +85,17 @@ class CharR : BaseChar() {
             addAll(addSurface(0, 6))
             addAll(addSurface(6, 7))
         }
+    }
+
+    override fun createVertexColor(vertexSize: Int): FloatArray {
+        val vertex = mutableListOf<Float>()
+        for (i in 0 until vertexSize/2) {
+            vertex.addAll(listOf(1f, 0f, 0f, 1f))
+        }
+        for (i in 0 until vertexSize/2) {
+            vertex.addAll(listOf(0f, 1f, 0f, 1f))
+        }
+        return vertex.toFloatArray()
     }
 
     private companion object {

@@ -16,6 +16,7 @@ class LogoView(
         setRenderer(renderer)
         renderMode = RENDERMODE_WHEN_DIRTY
         runRotation()
+//        setupTouchControl()
     }
 
     private fun runRotation() {

@@ -1,6 +1,6 @@
-package ru.demin.logo3d
+package ru.demin.logo3d.characters
 
-class CharL : BaseChar() {
+class CharE : BaseChar() {
     override fun createVertex(z: Float): List<Float> {
         val vertex = mutableListOf<Float>()
         vertex.run {
@@ -10,7 +10,13 @@ class CharL : BaseChar() {
                     4f, -4f, z,
                     4f, -2f, z,
                     0f, -2f, z,
-                    0f, 4f, z,
+                    0f, -1f, z,
+                    2f, -1f, z,
+                    2f, 1f, z,
+                    0f, 1f, z,
+                    0f, 2f, z,
+                    4f, 2f, z,
+                    4f, 4f, z,
                     -2f, 4f, z
                 )
             )
@@ -25,7 +31,13 @@ class CharL : BaseChar() {
             addAll(addSurface(2, 3))
             addAll(addSurface(3, 4))
             addAll(addSurface(4, 5))
-            addAll(addSurface(5, 0))
+            addAll(addSurface(5, 6))
+            addAll(addSurface(6, 7))
+            addAll(addSurface(7, 8))
+            addAll(addSurface(8, 9))
+            addAll(addSurface(9, 10))
+            addAll(addSurface(10, 11))
+            addAll(addSurface(11, 0))
         }
     }
 
@@ -33,10 +45,16 @@ class CharL : BaseChar() {
         val index = mutableListOf<Int>()
         index.addAll(
             listOf(
-                3, 0, 1,
-                3, 2, 1,
-                3, 0, 5,
-                3, 4, 5
+                0, 3, 1,
+                2, 3, 1,
+                0, 3, 7,
+                0, 3, 7,
+                4, 5, 7,
+                6, 5, 7,
+                0, 11, 7,
+                8, 11, 7,
+                8, 11, 10,
+                8, 9, 10
             )
         )
         return index.map { it + offset }
